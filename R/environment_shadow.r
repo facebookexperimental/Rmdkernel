@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 # Everthing related to the environment which takes functions which shadow base R functions.
 # This is needed to build in our own needs, like properly shutting down the kernel
 # when `quit()` is called.

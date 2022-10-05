@@ -1,3 +1,6 @@
+# Copyright (c) IRkernel authors
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+
 #' Initialise and run the kernel
 #'
 #' @param connection_file  The path to the Jupyter connection file, written by the frontend
@@ -10,7 +13,7 @@ main <- function(connection_file = '') {
         # pass it as a separate command line argument.
         connection_file <- commandArgs(TRUE)[[1]]
     }
-    log_debug('Starting the R kernel...')
+    log_debug('Starting the Rmarkdown kernel...')
     kernel <- Kernel$new(connection_file = connection_file)
     kernel$run()
 }

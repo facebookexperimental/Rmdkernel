@@ -1,3 +1,6 @@
+# Copyright (c) IRkernel authors
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+
 *.ipynb_checkpoints
 __pycache__
 .directory
@@ -6,3 +9,4 @@ __pycache__
 .RData
 .Rhistory
 *.pdf
+.DS_Store

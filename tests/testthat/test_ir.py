@@ -1,5 +1,5 @@
 # Test manually via
-# IR_KERNEL_NAME=ir python3 -m test_ir -k some_test
+# RMD_KERNEL_NAME=rmarkdown python3 -m test_ir -k some_test
 
 import os
 import sys
@@ -26,8 +26,8 @@ options(jupyter.rich_display = TRUE)
 TIMEOUT = 15
 
 
-class IRkernelTests(jkt.KernelTests):
-    kernel_name = os.environ.get('IR_KERNEL_NAME', 'testir')
+class RmdkernelTests(jkt.KernelTests):
+    kernel_name = os.environ.get('RMD_KERNEL_NAME', 'testir')
 
     language_name = 'R'
 
@@ -39,11 +39,11 @@ class IRkernelTests(jkt.KernelTests):
         self.assertEqual(reply['content']['status'], 'ok', '{0}: {0}'.format(reply['content'].get('ename'), reply['content'].get('evalue')))
         if tests:
             self.assertGreaterEqual(len(output_msgs), 1)
-            # the irkernel only sends display_data, not execute_results
+            # the rmdkernel only sends display_data, not execute_results
             self.assertEqual(output_msgs[0]['msg_type'], 'display_data')
         return reply, output_msgs
 
-    code_hello_world = 'print("hello, world")'
+    code_hello_world = '`print("hello, world")`'
 
     completion_samples = [
         {'text': 'zi',                     'matches': {'zip'}},
@@ -102,7 +102,7 @@ class IRkernelTests(jkt.KernelTests):
         self.assertEqual(len(data), 1, data.keys())
         self.assertEqual(data['text/plain'], '[1] 1 2 3')
 
-    def test_irkernel_plots(self):
+    def test_rmdkernel_plots(self):
         """plotting"""
         code = 'plot(1:3)'
         reply, output_msgs = self._execute_code(code)
@@ -119,7 +119,7 @@ class IRkernelTests(jkt.KernelTests):
         self.assertIn('image/png', metadata)
         self.assertEqual(metadata['image/png'], dict(width=420, height=420), metadata['image/png'])
 
-    def test_irkernel_plots_only_PNG(self):
+    def test_rmdkernel_plots_only_PNG(self):
         """plotting PNG"""
         # the reset needs to happen in another execute because plots are sent after either
         # the next plot is opened or everything is executed, not at the time when plot
@@ -147,7 +147,7 @@ class IRkernelTests(jkt.KernelTests):
         code = 'options(old_options)'
         reply, output_msgs = self._execute_code(code, tests=False)
 
-    def test_irkernel_plots_only_SVG(self):
+    def test_rmdkernel_plots_only_SVG(self):
         # again the reset dance (see PNG)
         code = '''\
             old_options <- options(jupyter.plot_mimetypes = c('image/svg+xml'))
@@ -170,7 +170,7 @@ class IRkernelTests(jkt.KernelTests):
         code = 'options(old_options)'
         reply, output_msgs = self._execute_code(code, tests=False)
 
-    def test_irkernel_plots_without_rich_display(self):
+    def test_rmdkernel_plots_without_rich_display(self):
         code = '''\
             options(jupyter.rich_display = FALSE)
             plot(1:3)
@@ -187,7 +187,7 @@ class IRkernelTests(jkt.KernelTests):
         code = 'options(jupyter.rich_display = TRUE)'
         reply, output_msgs = self._execute_code(code, tests=False)
 
-    def test_irkernel_df_default_rich_output(self):
+    def test_rmdkernel_df_default_rich_output(self):
         """data.frame rich representation"""
         code = 'data.frame(x = 1:3)'
         reply, output_msgs = self._execute_code(code)
@@ -196,7 +196,7 @@ class IRkernelTests(jkt.KernelTests):
         data = output_msgs[0]['content']['data']
         self.assertEqual(len(data), 4, data.keys())
 
-    def test_irkernel_df_no_rich_output(self):
+    def test_rmdkernel_df_no_rich_output(self):
         """data.frame plain representation"""
         code = '''
             options(jupyter.rich_display = FALSE)
@@ -267,7 +267,7 @@ class IRkernelTests(jkt.KernelTests):
         self.assertEqual(execution_count_1, execution_count_2)
         self.assertEqual(execution_count_1, execution_count_3)
 
-    def test_irkernel_inspects(self):
+    def test_rmdkernel_inspects(self):
         """Test if object inspection works."""
         self.flush_channels()
 

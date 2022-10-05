@@ -1,4 +1,4 @@
-{"argv": ["R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
- "display_name":"R",
+{"argv": ["R", "--slave", "-e", "Rmdkernel::main()", "--args", "{connection_file}"],
+ "display_name":"Rmarkdown",
  "language":"R"
 }

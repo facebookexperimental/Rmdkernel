@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 #' The CommManager
 #'
 #' Has methods able to register comms/targets and process comm messages

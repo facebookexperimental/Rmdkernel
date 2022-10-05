@@ -3,10 +3,10 @@
 \docType{data}
 \name{jupyter_option_defaults}
 \alias{jupyter_option_defaults}
-\alias{IRkernel-package}
-\alias{IRkernel}
-\alias{IRkernel-options}
-\title{An R kernel for Jupyter.}
+\alias{Rmdkernel-package}
+\alias{Rmdkernel}
+\alias{Rmdkernel-options}
+\title{An Rmarkdown kernel for Jupyter, lightly forked from IRkernel}
 \format{
 An object of class \code{list} of length 7.
 }
@@ -15,7 +15,7 @@ jupyter_option_defaults
 }
 \description{
 Jupyter speaks a JSON+ZMQ protocol to a 'kernel' which is responsible for executing code.
-This package is a kernel for the R language.
+This package is a kernel for rmarkdown syntax in the R language.
 }
 \section{Options}{
 

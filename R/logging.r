@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 # The primitive jupyter logging system...
 # Per default, only error messages are shown
 # levels: 3 = DEBUG, 2 = INFO/MSG, 1 = ERROR

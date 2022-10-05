@@ -1,6 +1,6 @@
 ## Release summary
 
-This package is new on CRAN. It contains the R kernel for the Jupyter
+This package is new on CRAN. It contains the Rmdkernel kernel for the Jupyter
 ecosystem. The kernel executes R code, which the frontend (Jupyter Notebook or
 other frontends) submits to the kernel via the network.
 
@@ -30,4 +30,4 @@ server on localhost. As expected this URL is only reachable after starting it.
 It is assumed that there won't be any code dependencies on this package, as it
 implements an application without any API apart from the startup function and the
 implemented Jupyter Messaging spec. It's usually started as
-`R --slave -e IRkernel::main() --args {connection_file}`.
+`R --slave -e Rmdkernel::main() --args {connection_file}`.

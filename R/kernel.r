@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 #' @include execution.r help.r comm_manager.r logging.r utils.r
 PROTOCOL_VER = '5.3'
 
@@ -314,8 +316,8 @@ kernel_info = function(request) {
     rversion <- paste0(version$major, '.', version$minor)
     send_response('kernel_info_reply', request, 'shell', list(
         protocol_version       = PROTOCOL_VER,
-        implementation         = 'IRkernel',
-        implementation_version = as.character(packageVersion('IRkernel')),
+        implementation         = 'Rmdkernel',
+        implementation_version = as.character(packageVersion('Rmdkernel')),
         language_info = list(
             name = 'R',
             codemirror_mode = 'r',

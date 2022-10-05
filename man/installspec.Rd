@@ -2,12 +2,12 @@
 % Please edit documentation in R/installspec.r
 \name{installspec}
 \alias{installspec}
-\title{Install the kernelspec to tell Jupyter about IRkernel.}
+\title{Install the kernelspec to tell Jupyter about Rmdkernel.}
 \usage{
 installspec(
   user = NULL,
-  name = "ir",
-  displayname = "R",
+  name = "rmarkdown",
+  displayname = "Rmarkdown",
   rprofile = NULL,
   prefix = NULL,
   sys_prefix = NULL,
@@ -17,15 +17,15 @@ installspec(
 \arguments{
 \item{user}{Install into user directory (\href{https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html}{\code{$XDG_DATA_HOME}}\code{/jupyter/kernels}) or globally? (default: NULL but treated as TRUE if "prefix" is not specified)}
 
-\item{name}{The name of the kernel (default "ir")}
+\item{name}{The name of the kernel (default \dQuote{rmarkdown})}
 
-\item{displayname}{The name which is displayed in the notebook (default: "R")}
+\item{displayname}{The name which is displayed in the notebook (default: \dQuote{Rmarkdown})}
 
 \item{rprofile}{(optional) Path to kernel-specific Rprofile (defaults to system-level settings)}
 
 \item{prefix}{(optional) Path to alternate directory to install kernelspec into (default: NULL)}
 
-\item{sys_prefix}{(optional) Install kernelspec using the \code{--sys-prefix} option of the currently detected jupyter (default: NULL)}
+\item{sys_prefix}{(optional) Install kernelspec using the \code{--sys-prefix} option of the currently detected jupyter (default: \code{NULL})}
 
 \item{verbose}{(optional) If \code{FALSE}, silence output of \code{install}}
 }

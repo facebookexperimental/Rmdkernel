@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 ellip_h <- repr:::.char_fallback('\u22EF', '...')
 
 #' @importFrom utils head tail

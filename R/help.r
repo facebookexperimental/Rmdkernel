@@ -1,7 +1,10 @@
-#' An R kernel for Jupyter.
+# Copyright (c) IRkernel authors
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+
+#' An Rmarkdown kernel for Jupyter, lightly forked from IRkernel
 #' 
 #' Jupyter speaks a JSON+ZMQ protocol to a 'kernel' which is responsible for executing code.
-#' This package is a kernel for the R language.
+#' This package is a kernel for rmarkdown syntax in the R language.
 #' 
 #' @section Options:
 #' 
@@ -43,6 +46,6 @@
 #' 
 #' @docType package
 #' @seealso \link{installspec}
-#' @name IRkernel-package
-#' @aliases IRkernel IRkernel-package IRkernel-options
+#' @name Rmdkernel-package
+#' @aliases Rmdkernel Rmdkernel-package Rmdkernel-options
 NULL

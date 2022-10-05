@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 context('default options')
 
 test_that('default options are set', {
