@@ -1,3 +1,7 @@
+# Copyright (c) IRkernel authors
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+
+#' @importFrom rmarkdown render
 #' @include options.r class_unions.r
 NULL
 
@@ -7,6 +11,8 @@ namedlist <- function() setNames(list(), character(0))
 # Converts something to a string no matter what
 #' @importFrom utils str
 resilient_to_str <- function(v) tryCatch(toString(v), error = function(e) capture.output(str(v)))
+
+.render_and_return <- function() {}
 
 plot_builds_upon <- function(prev, current) {
     if (is.null(prev)) {
@@ -305,21 +311,52 @@ execute = function(request) {
     
     interrupted <<- FALSE
     last_recorded_plot <<- NULL
-    log_debug('Executing code: %s', request$content$code)
+    log_debug('Executing code: %s', gsub("\n", "\\\\n", request$content$code))
     
     warn_unicode_on_windows(request$content$code, .self$send_error_msg)
     
     tryCatch(
         evaluate(
-            request$content$code,
+            {
+                if (grepl("^[[:space:]]?\\?", request$content$code)) {
+                    # special case handling of `?` outside of code chunks
+                    sprintf(
+                        "IRdisplay::display(eval(parse(text='%s')))",
+                        request$content$code
+                    )
+                } else {
+                    # everything else
+                    tmp_in <- tempfile(fileext = ".rmd")
+                    tmp_out <- tempfile(fileext = ".html")
+                    writeLines(
+                        request$content$code, 
+                        con = tmp_in
+                    )
+                    on.exit(unlink(tmp_in), add=TRUE)
+                    on.exit(unlink(tmp_out), add=TRUE)
+                    rmarkdown::render(
+                        tmp_in,
+                        output_format = "html_fragment",
+                        output_file = tmp_out,
+                        quiet = TRUE,
+                        envir = .GlobalEnv
+                    )
+                    sprintf(
+                        "IRdisplay::display_html(file = '%s')",
+                        tmp_out
+                    )
+                }
+            },
             envir = .GlobalEnv,
             output_handler = oh,
-            stop_on_error = 1L),
+            stop_on_error = 1L
+        ),
         interrupt = function(cond) {
             log_debug('Interrupt during execution')
             interrupted <<- TRUE
         },
-        error = .self$handle_error) # evaluate does not catch errors in parsing
+        error = .self$handle_error
+    ) # evaluate does not catch errors in parsing
     
     if (!is_silent() && !is.null(last_recorded_plot)) {
         send_plot(last_recorded_plot)

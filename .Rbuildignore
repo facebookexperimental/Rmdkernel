@@ -1,16 +1,21 @@
-.gitignore
-.github
-Makefile
-.ipynb_checkpoints
-.*.ipynb
-^.*\.Rproj$
+# Copyright (c) IRkernel authors
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+
+^\.gitignore$
+^\.github$
+^Makefile$
+^\.ipynb_checkpoints$
+^.+\.ipynb$
+^.+\.Rproj$
 ^\.Rproj\.user$
-.idea/.*$
+^.idea/.+$
 [.]pdf$
-example-notebooks/.*$
+^inst/example-notebooks.?$
 ^\.travis\.(sh|yml)$
-^tests/testthat/jkt/[^j][^u][^p].*$
-^tests/testthat/njr/[^n][^d][^j].*$
-Dockerfile
-cran-comments.md
+^tests/testthat/jkt/[^j][^u][^p].+$
+^tests/testthat/njr/[^n][^d][^j].+$
+^Dockerfile$
+^cran-comments\.md$
 ^LICENSE\.md$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$

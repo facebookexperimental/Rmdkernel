@@ -1,3 +1,5 @@
+// Copyright (c) IRkernel authors
+
 const cmd_key = /Mac/.test(navigator.platform) ? 'Cmd' : 'Ctrl'
 
 const edit_actions = [
@@ -35,7 +37,7 @@ const edit_actions = [
 	},
 ]
 
-const prefix = 'irkernel'
+const prefix = 'rmdkernel'
 
 function add_edit_shortcut(notebook, actions, keyboard_manager, edit_action) {
 	const {name, shortcut, icon, help, handler} = edit_action

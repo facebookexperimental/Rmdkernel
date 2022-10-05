@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 prepare_mimebundle_kernel <- function(obj, handle_display_error = log_error) {
     # we always send text/plain, even if the user removed that from the option!
     text_bundle <- prepare_mimebundle(obj, 'text/plain', error_handler = handle_display_error)

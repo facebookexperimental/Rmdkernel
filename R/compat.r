@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 UNICODE_WARNING <-
 'Your code contains a unicode char which cannot be displayed in your
 current locale and R will silently convert it to an escaped form when the

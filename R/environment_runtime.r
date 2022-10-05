@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 # This file contains an environment to store runtime variables independent from the kernel
 
 runtime_env <- new.env()

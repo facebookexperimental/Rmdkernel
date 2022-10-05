@@ -1,8 +1,11 @@
-.PHONY: IRkernel.pdf docs check test docker_dev_image docker_dev docker_test
+# Copyright (c) IRkernel authors
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+
+.PHONY: Rmdkernel.pdf docs check test docker_dev_image docker_dev docker_test
 
 DEV_IMAGE:=jupyter/r-notebook-dev
 
-IRkernel.pdf: man/*.Rd
+Rmdkernel.pdf: man/*.Rd
 	RD2PDF_INPUTENC=inputenx R_RD4PDF=ae,hyper R CMD Rd2pdf --force --batch --no-preview --encoding=UTF-8 --output=$@ .
 
 docs:
@@ -20,13 +23,13 @@ docker_dev_image:
 docker_dev: docker_dev_image
 	@docker run -it --rm \
 	-p 8888:8888 \
-	-v `pwd`:/src_irkernel \
-	$(DEV_IMAGE) bash -c 'R CMD INSTALL -l /opt/conda/lib/R/library /src_irkernel && \
+	-v `pwd`:/src_rmdkernel \
+	$(DEV_IMAGE) bash -c 'R CMD INSTALL -l /opt/conda/lib/R/library /src_rmdkernel && \
 	                        jupyter notebook --no-browser --port 8888 --ip='*''
 
 docker_test: docker_dev_image
-	@echo 'Running IRkernel tests'
+	@echo 'Running Rmdkernel tests'
 	@docker run -it --rm \
-		-v `pwd`:/src_irkernel \
-		$(DEV_IMAGE) bash -c 'R CMD build /src_irkernel && \
-		R CMD check IRkernel*.tar.gz'
+		-v `pwd`:/src_rmdkernel \
+		$(DEV_IMAGE) bash -c 'R CMD build /src_rmdkernel && \
+		R CMD check Rmdkernel*.tar.gz'

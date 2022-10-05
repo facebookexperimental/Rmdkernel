@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 completions <- function(code, cursor_pos = nchar(code), fixup = TRUE) {
     # Find which line we're on and position within that line
     lines <- strsplit(code, '\n', fixed = TRUE)[[1]]

@@ -1,7 +1,9 @@
+# Copyright (c) IRkernel authors
+
 #' @usage
 #' jupyter_option_defaults
 #' 
-#' @rdname IRkernel-package
+#' @rdname Rmdkernel-package
 #' @export
 jupyter_option_defaults <- list(
     jupyter.rich_display = TRUE, # moved from IRdisplay

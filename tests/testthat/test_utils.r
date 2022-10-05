@@ -1,3 +1,5 @@
+# Copyright (c) IRkernel authors
+
 context('utils')
 
 library(evaluate)
